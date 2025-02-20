@@ -13,7 +13,7 @@ from .models import WhaleSpecies
 # * /whalespecies - GET index, POST create
 class SpeciesListView(APIView):
 
-    # GET index route
+    # * GET index route
     def get(self, request):
         # 1. Query the database table for all entries
         whales_queryset = WhaleSpecies.objects.all()
@@ -22,9 +22,18 @@ class SpeciesListView(APIView):
         # 3. Send the serialized data back to the client
         return Response(whales_serialized.data)
 
-    # POST create route
+    # * POST create route
     def post(self, request):
-        return Response('HIT CREATE ROUTE')
+        # 1. pass the request.data into the serializer for deserialization
+        whale_serializer = WhaleSpeciesSerializer(data=request.data) # the data key is for data the will be added to the existing instance or used to create a new instance
+        # 2. Check that the data was valid
+        if whale_serializer.is_valid():
+            # 3. If the data was valid, we will save the model and send the created object back to the client
+            whale_serializer.save()
+            return Response(whale_serializer.data, 201)
+        
+        # 4. If the data was invalid, we will send the errors back
+        return Response(whale_serializer.errors, 422)
 
 
 
