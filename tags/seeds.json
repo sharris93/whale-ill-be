@@ -1,0 +1,298 @@
+[
+{
+  "model": "tags.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Breaching",
+    "description": "Jumping out of the water"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Lobtailing",
+    "description": "Slapping its tail on the water"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Fluke Up Dive",
+    "description": "Showing its tail before diving"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Logging",
+    "description": "Floating still on the surface"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 6,
+  "fields": {
+    "name": "Blowing",
+    "description": "Visible exhalation from the blowhole"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 7,
+  "fields": {
+    "name": "Bubble Net Feeding",
+    "description": "Cooperative hunting behavior"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 8,
+  "fields": {
+    "name": "Mother & Calf",
+    "description": "Adult whale seen with a young calf"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 9,
+  "fields": {
+    "name": "Pod Movement",
+    "description": "Whales traveling in a group"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 10,
+  "fields": {
+    "name": "Solo Sighting",
+    "description": "Single whale observed"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 11,
+  "fields": {
+    "name": "Clear Waters",
+    "description": "Good visibility"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 12,
+  "fields": {
+    "name": "Murky Waters",
+    "description": "Poor visibility"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 13,
+  "fields": {
+    "name": "High Waves",
+    "description": "Rough seas"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 14,
+  "fields": {
+    "name": "Calm Seas",
+    "description": "Flat, smooth water"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 15,
+  "fields": {
+    "name": "Strong Winds",
+    "description": "Wind affecting observation"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 16,
+  "fields": {
+    "name": "Rainy Weather",
+    "description": "Observed during rainfall"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 17,
+  "fields": {
+    "name": "Near Boat",
+    "description": "Whale sighted close to a vessel"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 18,
+  "fields": {
+    "name": "Boat Avoidance",
+    "description": "Whale changing course away from a boa"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 19,
+  "fields": {
+    "name": "Curious Behavior",
+    "description": "Whale approaching boats or observers"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 20,
+  "fields": {
+    "name": "Entangled",
+    "description": "Whale caught in fishing gear or debris"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 21,
+  "fields": {
+    "name": "Whale Watching Tour",
+    "description": "Sighting from a commercial whale tour"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 22,
+  "fields": {
+    "name": "Tagged Whale",
+    "description": "Whale seen with a research tracking tag"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 23,
+  "fields": {
+    "name": "Coastal",
+    "description": "Whale near the shore"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 24,
+  "fields": {
+    "name": "Open Ocean",
+    "description": "Far from land"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 25,
+  "fields": {
+    "name": "Deep Dive",
+    "description": "Spotted diving in deep water"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 26,
+  "fields": {
+    "name": "Near Iceberg",
+    "description": "Whale seen in icy waters"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 27,
+  "fields": {
+    "name": "Estuary Sighting",
+    "description": "Spotted near river mouths or estuaries"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 28,
+  "fields": {
+    "name": "Injured",
+    "description": "Whale with visible wounds or scars"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 29,
+  "fields": {
+    "name": "Ship Strike Evidence",
+    "description": "Signs of impact injuries"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 30,
+  "fields": {
+    "name": "Plastic Debris Nearby",
+    "description": "Sighting near floating trash"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 31,
+  "fields": {
+    "name": "Fishing Gear Present",
+    "description": "Fishing nets, lines, or buoys near sighting"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 32,
+  "fields": {
+    "name": "Predators Nearby",
+    "description": "Sharks or orcas in the area"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 33,
+  "fields": {
+    "name": "Photographed",
+    "description": "Sighting includes clear photo"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 34,
+  "fields": {
+    "name": "Video Recorded",
+    "description": "Sighting captured on video"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 35,
+  "fields": {
+    "name": "Audio Recorded",
+    "description": "Whale vocalizations captured"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 36,
+  "fields": {
+    "name": "Dorsal Fin Identified",
+    "description": "Unique dorsal fin pattern recognized"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 37,
+  "fields": {
+    "name": "Fluke Identified",
+    "description": "Fluke markings used for identification"
+  }
+},
+{
+  "model": "tags.tag",
+  "pk": 38,
+  "fields": {
+    "name": "Diving",
+    "description": "Diving in deep water"
+  }
+}
+]

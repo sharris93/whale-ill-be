@@ -1,0 +1,92 @@
+[
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 1,
+    "fields": {
+      "name": "Blue Whale",
+      "scientific_name": "Balaenoptera musculus",
+      "conservation_status": "EN"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 2,
+    "fields": {
+      "name": "Humpback Whale",
+      "scientific_name": "Megaptera novaeangliae",
+      "conservation_status": "LC"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 3,
+    "fields": {
+      "name": "Fin Whale",
+      "scientific_name": "Balaenoptera physalus",
+      "conservation_status": "VU"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 4,
+    "fields": {
+      "name": "Sperm Whale",
+      "scientific_name": "Physeter macrocephalus",
+      "conservation_status": "VU"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 5,
+    "fields": {
+      "name": "Gray Whale",
+      "scientific_name": "Eschrichtius robustus",
+      "conservation_status": "LC"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 6,
+    "fields": {
+      "name": "Minke Whale",
+      "scientific_name": "Balaenoptera acutorostrata",
+      "conservation_status": "LC"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 7,
+    "fields": {
+      "name": "Beluga Whale",
+      "scientific_name": "Delphinapterus leucas",
+      "conservation_status": "NT"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 8,
+    "fields": {
+      "name": "Narwhal",
+      "scientific_name": "Monodon monoceros",
+      "conservation_status": "NT"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 9,
+    "fields": {
+      "name": "Bowhead Whale",
+      "scientific_name": "Balaena mysticetus",
+      "conservation_status": "LC"
+    }
+  },
+  {
+    "model": "whalespecies.whalespecies",
+    "pk": 10,
+    "fields": {
+      "name": "Bryde's Whale",
+      "scientific_name": "Balaenoptera edeni",
+      "conservation_status": "LC"
+    }
+  }
+]
