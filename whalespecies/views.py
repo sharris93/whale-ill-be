@@ -4,6 +4,7 @@ from rest_framework.exceptions import NotFound # This is the NotFound exception
 
 # Serializers
 from .serializers.common import WhaleSpeciesSerializer
+from .serializers.populated import PopulatedWhaleSpeciesSerializer
 
 # Models
 from .models import WhaleSpecies
@@ -51,7 +52,7 @@ class SpeciesDetailView(APIView):
     # * GET show route
     def get(self, request, whale_id):
         whale = self.get_object(whale_id)
-        serialized_whale = WhaleSpeciesSerializer(whale)
+        serialized_whale = PopulatedWhaleSpeciesSerializer(whale)
         return Response(serialized_whale.data)
     
 
