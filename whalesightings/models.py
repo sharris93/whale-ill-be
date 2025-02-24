@@ -1,6 +1,7 @@
 from django.db import models
 from whalespecies.models import WhaleSpecies
 from users.models import User
+from tags.models import Tag
 
 # Create your models here.
 class WhaleSighting(models.Model):
@@ -13,3 +14,10 @@ class WhaleSighting(models.Model):
     latitude = models.FloatField()
     date_sighted = models.DateTimeField(auto_now_add=True) # auto_now_add will give you a timestamp the first time the object is created
     behaviour = models.TextField(max_length=350)
+    tags = models.ManyToManyField(
+        to=Tag,
+        related_name='sightings'
+    )
+
+    def __str__(self):
+        return f'{self.species} ({self.id})'

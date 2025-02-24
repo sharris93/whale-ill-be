@@ -17,4 +17,8 @@ class WhaleSightingListView(APIView):
 
     # * Create
     def post(self, request):
-        pass
+        new_sighting = WhaleSightingSerializer(data=request.data)
+        if new_sighting.is_valid():
+            new_sighting.save()
+            return Response(new_sighting.data, 201)
+        return Response(new_sighting.errors, 422)
