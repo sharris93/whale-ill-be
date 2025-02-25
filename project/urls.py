@@ -22,4 +22,5 @@ urlpatterns = [
     path('whalespecies/', include('whalespecies.urls')),
     path('whalesightings/', include('whalesightings.urls')),
     path('tags/', include('tags.urls')),
+    path('auth/', include('users.urls')),
 ]
