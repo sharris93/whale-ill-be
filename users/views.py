@@ -28,16 +28,17 @@ class LoginView(APIView):
         username = request.data.get('username')
         password = request.data.get('password')
         try:
-            # Search for the user by its username
+            # 1. Search for the user by its username
             user = User.objects.get(username=username)
-            # Check plain text password matches hash
+
+            # 2. Check plain text password matches hash, raise validation error if not
             if not user.check_password(password):
                 raise ValidationError({ 'password': 'Passwords do not match' })
             
-            # Generate an expiry date
+            # 3. Generate an expiry date
             exp_date = datetime.now() + timedelta(days=1)
 
-            # Generate token
+            # Generate token using pyjwt package
             token = jwt.encode(
                 payload={
                     'user': {
@@ -52,7 +53,7 @@ class LoginView(APIView):
                 algorithm='HS256'
             )
 
-            # Send token
+            # Send token in response
             return Response({ 'message': 'Login was successful', 'token': token })
             
         except (User.DoesNotExist, ValidationError) as e:
