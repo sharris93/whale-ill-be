@@ -1,6 +1,7 @@
 from rest_framework.views import APIView # this is the view class itself that we subclass to create our own custom views
 from rest_framework.response import Response # this is the response object that allows us to respond to a request, ending the RR cycle
 from rest_framework.exceptions import NotFound # This is the NotFound exception we can raise to send a 404
+from rest_framework.permissions import IsAdminUser
 
 # Serializers
 from .serializers.common import WhaleSpeciesSerializer
@@ -14,6 +15,7 @@ from .models import WhaleSpecies
 
 # * /whalespecies/
 class SpeciesListView(APIView):
+    permission_classes = [IsAdminUser]
 
     # * GET index route
     def get(self, request):

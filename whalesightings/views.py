@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .models import WhaleSighting
 
 # Serializers
@@ -9,13 +9,9 @@ from .serializers.populated import PopulatedWhaleSightingSerializer
 
 # /whalesightings/
 class WhaleSightingListView(APIView):
-    # def get_serializer_class(self):
-    #     if self.request.method == 'GET':
-    #         return WhaleSightingSerializer
-    #     return WhaleSightingSerializer
-    
+    permission_classes = [IsAuthenticated]
 
-    # # * Index
+    # * Index
     def get(self, request):
         sightings = WhaleSighting.objects.all()
         serialized_sightings = PopulatedWhaleSightingSerializer(sightings, many=True)
@@ -23,6 +19,7 @@ class WhaleSightingListView(APIView):
 
     # * Create
     def post(self, request):
+        request.data['user'] = request.user.id
         new_sighting = WhaleSightingSerializer(data=request.data)
         if new_sighting.is_valid():
             new_sighting.save()

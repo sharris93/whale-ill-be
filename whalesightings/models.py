@@ -18,6 +18,13 @@ class WhaleSighting(models.Model):
         to=Tag,
         related_name='sightings'
     )
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.SET_NULL,
+        related_name='own_sightings',
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return f'{self.species} ({self.id})'
