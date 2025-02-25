@@ -1,7 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.exceptions import NotAuthenticated, ValidationError
 from django.contrib.auth import get_user_model
 from .serializers.common import UserSerializer
+import jwt
+from django.conf import settings
+from datetime import datetime, timedelta
+
+User = get_user_model()
 
 
 # /auth/register/
@@ -19,4 +25,37 @@ class RegisterView(APIView):
 class LoginView(APIView):
 
     def post(self, request):
-        return Response('HIT LOGIN ROUTE')
+        username = request.data.get('username')
+        password = request.data.get('password')
+        try:
+            # Search for the user by its username
+            user = User.objects.get(username=username)
+            # Check plain text password matches hash
+            if not user.check_password(password):
+                raise ValidationError({ 'password': 'Passwords do not match' })
+            
+            # Generate an expiry date
+            exp_date = datetime.now() + timedelta(days=1)
+
+            # Generate token
+            token = jwt.encode(
+                payload={
+                    'user': {
+                        'id': user.id,
+                        'username': user.username,
+                        'profile_image': user.profile_image,
+                        'is_admin': user.is_staff
+                    },
+                    'exp': int(exp_date.strftime('%s'))
+                },
+                key=settings.SECRET_KEY,
+                algorithm='HS256'
+            )
+
+            # Send token
+            return Response({ 'message': 'Login was successful', 'token': token })
+            
+        except (User.DoesNotExist, ValidationError) as e:
+            # If either a DoesNotExist or a ValidationError is raised inside the catch, this except block will catch it
+            print(e)
+            raise NotAuthenticated('Invalid credentials')
