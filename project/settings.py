@@ -27,10 +27,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = env.bool('DEBUG', default=False)
+
+# if DEBUG:
+#     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+#     CORS_ALLOWED_ORIGINS = [
+#         "http://localhost:5173",
+#     ]
+
+#     CSRF_TRUSTED_ORIGINS = [
+#         "http://127.0.0.1:8000",
+#         "http://localhost:8000"
+#     ]
+
+# else:
+#     ALLOWED_HOSTS = ['yourbackend.com']
+
+#     CORS_ALLOWED_ORIGINS = [
+#         "https://yourfrontend.com",
+#     ]
+
+#     CSRF_TRUSTED_ORIGINS = [
+#         "https://yourbackend.com",
+#     ]
+
+# CORS_ALLOW_HEADERS = ["authorization"]  # Needed for JWT authentication
 
 
 # Application definition
@@ -43,13 +68,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'users',
     'whalespecies',
     'whalesightings',
     'tags'
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
