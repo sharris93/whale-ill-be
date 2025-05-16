@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import environ
+import dj_database_url
+import os
 
 # Initialising the env variables
 env = environ.Env()
@@ -27,35 +29,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env.bool('DEBUG', default=False)
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # local frontend urls without protocols
 
-# if DEBUG:
-#     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:5173", # Local frontend url
+    ]
 
-#     CORS_ALLOWED_ORIGINS = [
-#         "http://localhost:5173",
-#     ]
+    CSRF_TRUSTED_ORIGINS = [
+        "http://127.0.0.1:8000", # Local backend url
+        "http://localhost:8000" # localhost for good measure
+    ]
 
-#     CSRF_TRUSTED_ORIGINS = [
-#         "http://127.0.0.1:8000",
-#         "http://localhost:8000"
-#     ]
+else:
+    ALLOWED_HOSTS = ['your-backend.herokuapp.com'] # don't include the protocol (https://)
 
-# else:
-#     ALLOWED_HOSTS = ['yourbackend.com']
+    CORS_ALLOWED_ORIGINS = [
+        "https://your-frontend.com", # Deployed frontend url only
+    ]
 
-#     CORS_ALLOWED_ORIGINS = [
-#         "https://yourfrontend.com",
-#     ]
-
-#     CSRF_TRUSTED_ORIGINS = [
-#         "https://yourbackend.com",
-#     ]
-
-# CORS_ALLOW_HEADERS = ["authorization"]  # Needed for JWT authentication
+    CSRF_TRUSTED_ORIGINS = [
+        "https://your-backend.herokuapp.com", # Deployed backend url only
+    ]
 
 
 # Application definition
@@ -81,6 +78,7 @@ CORS_ALLOWED_ORIGINS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,14 +118,23 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # When we use postgresql, use this adapter
-        'NAME': 'django-rest-api', # Name of the database we created
-        'HOST': 'localhost', # Localhost when you're connecting to your local postgres server
-        'PORT': 5432 # Default Postgres port
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'mydbname',
+            'HOST': 'localhost',
+            'PORT': 5432
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            env('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
 
 
 # Password validation
@@ -169,7 +176,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# This is the URL where the assets can be publicly accessed
+STATIC_URL = '/static/'
+
+# Tell Django the absolute path to store those assets - call the folder `staticfiles`
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# This production code might break development mode, so we check whether we're in DEBUG mode before setting the STATICFILES_STORAGE
+if not DEBUG:
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
